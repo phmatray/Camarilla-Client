@@ -5,23 +5,24 @@
         .module('app.layout')
         .controller('ShellController', ShellController);
 
-    ShellController.$inject = ['$rootScope', '$timeout', 'config', 'logger'];
+    ShellController.$inject = ['$rootScope', '$timeout', 'dataservice', 'config', 'logger'];
     /* @ngInject */
-    function ShellController($rootScope, $timeout, config, logger) {
+    function ShellController($rootScope, $timeout, dataservice, config, logger) {
         var vm = this;
-        vm.busyMessage = 'Please wait ...';
+        vm.busyMessage = 'Patientez SVP ...';
         vm.isBusy = true;
         $rootScope.showSplash = true;
         vm.navline = {
             title: config.appTitle,
-            text: 'Created by John Papa',
-            link: 'http://twitter.com/john_papa'
+            text: 'Créé par Philippe Matray',
+            link: 'http://phmatray.net',
+            login: login
         };
 
         activate();
 
         function activate() {
-            logger.success(config.appTitle + ' loaded!', null);
+            logger.success(config.appTitle + ' chargé !', null);
             hideSplash();
         }
 
@@ -30,6 +31,14 @@
             $timeout(function() {
                 $rootScope.showSplash = false;
             }, 1000);
+        }
+        
+        function login() {
+            // return dataservice.getToken().then(function (data) {
+            //     return data;
+            // });
+
+            logger.info("Nous essayons de vous connecter");
         }
     }
 })();

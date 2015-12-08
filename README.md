@@ -29,7 +29,7 @@ Ce repository contient le serveur permettant la gestion de fiches de personnages
 2. Poussez votre branche thématique sur votre dépôt dupliqué GitHub
 3. Créez un pull request
 
-# camarilla
+# About HotTowel
 
 **Generated from HotTowel Angular**
 

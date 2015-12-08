@@ -4,13 +4,13 @@
             <div class="row">
                 <div class="col-md-12">
                     <ul class="today-datas">
-                        <li class="blightblue">
+                        <!--<li class="blightblue">
                             <div class="pull-left"><i class="fa fa-plane"></i></div>
                             <div class="datas-text pull-right">
                                 <span class="bold">May 18 - 19, 2015</span> Castle Resort, Neverland
                             </div>
                             <div class="clearfix"></div>
-                        </li>
+                        </li>-->
 
                         <li class="borange">
                             <div class="pull-left"><i class="fa fa-envelope"></i></div>
@@ -20,11 +20,19 @@
                             <div class="clearfix"></div>
                         </li>
 
+                        <li class="bgreen">
+                            <div class="pull-left"><i class="fa fa-users"></i></div>
+                            <div class="datas-text pull-right">
+                                <span class="bold">{{vm.confirmedUserCount}} / {{vm.userCount}}</span> Utilisateurs
+                            </div>
+                            <div class="clearfix"></div>
+                        </li>
+
                     </ul>
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-6">
+                <!--<div class="col-md-6">
                     <div class="widget wviolet">
                         <div ht-widget-header title="People"
                              allow-collapse="true"></div>
@@ -52,13 +60,35 @@
                             <div class="clearfix"></div>
                         </div>
                     </div>
-                </div>
+                </div>-->
                 <div class="col-md-6">
-                    <div class="widget wgreen">
+                    <div class="widget wred">
                         <div ht-widget-header title="{{vm.news.title}}"
                              allow-collapse="true"></div>
                         <div class="widget-content text-center text-info">
-                            <small>{{vm.news.description}}</small>
+                            <!--<small>{{vm.news.description}}</small>-->
+                            <table class="table table-condensed table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Utilisateur</th>
+                                        <th>Nom</th>
+                                        <th>Email</th>
+                                        <th>Inscription</th>
+                                        <th>Vérifié</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="p in vm.users | orderBy:'-joinDate' | limitTo:'10'">
+                                        <td><a>{{p.userName}}</a></td>
+                                        <td>{{p.fullName}}</td>
+                                        <td><a ng-href="mailto:{{p.email}}">{{p.email}}</a></td>
+                                        <td>{{p.joinDate | date}}</td>
+                                        <td>{{p.emailConfirmed | yesNo}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            
+                            <!--<pre>{{vm.users}}</pre>-->
                         </div>
                         <div class="widget-foot">
                             <div class="clearfix"></div>

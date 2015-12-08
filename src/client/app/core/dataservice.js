@@ -10,7 +10,9 @@
     function dataservice($http, $q, exception, logger) {
         var service = {
             getPeople: getPeople,
-            getMessageCount: getMessageCount
+            getMessageCount: getMessageCount,
+            getUsers: getUsers,
+            getToken: getToken
         };
 
         return service;
@@ -28,6 +30,34 @@
 
             function fail(e) {
                 return exception.catcher('XHR Failed for getPeople')(e);
+            }
+        }
+
+        function getUsers() {
+            return $http.get('http://camarilla-api.azurewebsites.net/api/accounts/users')
+                 .then(success)
+                 .catch(fail);
+
+            function success(response) {
+                return response.data;
+            }
+
+            function fail(e) {
+                return exception.catcher('XHR Failed for getUsers')(e);
+            }
+        }
+        
+        function getToken() {
+            return $http.get('http://camarilla-api.azurewebsites.net/api/token')
+                 .then(success)
+                 .catch(fail);
+
+            function success(response) {
+                return response.data;
+            }
+
+            function fail(e) {
+                return exception.catcher('XHR Failed for getToken')(e);
             }
         }
     }

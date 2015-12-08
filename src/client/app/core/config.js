@@ -14,7 +14,7 @@
 
     var config = {
         appErrorPrefix: '[camarilla Error] ',
-        appTitle: 'camarilla'
+        appTitle: 'La Camarilla Ardente'
     };
 
     core.value('config', config);

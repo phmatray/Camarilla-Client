@@ -8,7 +8,7 @@
         </a>
     </div>
     <div class="navbar-collapse collapse">
-        <div class="pull-right navbar-logo">
+        <!--<div class="pull-right navbar-logo">
             <ul class="nav navbar-nav pull-right">
                 <li>
                     <a ng-href="{{vm.navline.link}}" target="_blank">
@@ -26,6 +26,14 @@
                     </a>
                 </li>
             </ul>
-        </div>
+        </div>-->
+
+        <form novalidate class="navbar-form navbar-right" role="login">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Utilisateur">
+                <input type="password" class="form-control" placeholder="Mot de passe">
+            </div>
+            <button ng-click="vm.navline.login()" type="submit" class="btn btn-default">Connexion</button>
+        </form>
     </div>
 </nav>

@@ -23,7 +23,7 @@
                     title: 'dashboard',
                     settings: {
                         nav: 1,
-                        content: '<i class="fa fa-dashboard"></i> Dashboard'
+                        content: '<i class="fa fa-fw fa-dashboard"></i> Dashboard'
                     }
                 }
             }
