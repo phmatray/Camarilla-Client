@@ -5,9 +5,9 @@
         .module('app.dashboard')
         .controller('DashboardController', DashboardController);
 
-    DashboardController.$inject = ['$q', 'dataservice', 'logger'];
+    DashboardController.$inject = ['$q', 'authservice', 'dataservice', 'logger'];
     /* @ngInject */
-    function DashboardController($q, dataservice, logger) {
+    function DashboardController($q, authservice, dataservice, logger) {
         var vm = this;
         vm.news = {
             title: '10 derniers utilisateurs',
@@ -19,11 +19,14 @@
         vm.users = '';
         vm.confirmedUserCount = 0;
         vm.userCount = 0;
+        vm.username = 'ma biiite';
 
         activate();
 
+        //////////////////////////////////
+
         function activate() {
-            var promises = [getMessageCount(), getPeople(), getUsers()];
+            var promises = [getMessageCount(), getPeople(), getUsers(), getUsername()];
             return $q.all(promises).then(function() {
                 logger.info('Activated Dashboard View');
             });
@@ -57,6 +60,13 @@
                     .filter(function(v) {return v.emailConfirmed === true})
                     .length;
             }
+        }
+        
+        function getUsername() {
+            return authservice.getUsername().then(function (data) {
+                vm.username = data;
+                return vm.username;
+            });
         }
     }
 })();

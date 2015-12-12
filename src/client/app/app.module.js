@@ -8,6 +8,7 @@
         'app.dashboard',
         'app.about',
         'app.mail',
+        'app.account',
         'app.layout'
     ]);
 

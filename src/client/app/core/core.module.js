@@ -5,6 +5,6 @@
         .module('app.core', [
             'ngAnimate', 'ngSanitize',
             'blocks.exception', 'blocks.logger', 'blocks.router', 'blocks.filter',
-            'ui.router', 'ngplus'
+            'ui.router', 'ngplus', 'LocalStorageModule'
         ]);
 })();

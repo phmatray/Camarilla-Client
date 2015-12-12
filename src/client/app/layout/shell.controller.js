@@ -5,9 +5,9 @@
         .module('app.layout')
         .controller('ShellController', ShellController);
 
-    ShellController.$inject = ['$rootScope', '$timeout', 'dataservice', 'config', 'logger'];
+    ShellController.$inject = ['$rootScope', '$timeout', 'authservice', 'dataservice', 'config', 'logger'];
     /* @ngInject */
-    function ShellController($rootScope, $timeout, dataservice, config, logger) {
+    function ShellController($rootScope, $timeout, authservice, dataservice, config, logger) {
         var vm = this;
         vm.busyMessage = 'Patientez SVP ...';
         vm.isBusy = true;
@@ -16,7 +16,9 @@
             title: config.appTitle,
             text: 'Créé par Philippe Matray',
             link: 'http://phmatray.net',
-            login: login
+            login: login,
+            username: '',
+            password: ''
         };
 
         activate();
@@ -34,11 +36,11 @@
         }
         
         function login() {
-            // return dataservice.getToken().then(function (data) {
-            //     return data;
-            // });
-
-            logger.info("Nous essayons de vous connecter");
+            var loginData = {username: vm.navline.username, password: vm.navline.password}
+            return authservice.login(loginData).then(function (data) {
+                logger.success(data.access_token);
+                return data;
+            });
         }
     }
 })();

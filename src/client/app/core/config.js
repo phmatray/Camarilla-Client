@@ -31,4 +31,12 @@
         routerHelperProvider.configure({docTitle: config.appTitle + ': '});
     }
 
+    core.config(interceptorConfig);
+    
+    interceptorConfig.$inject = ['$httpProvider'];
+    /* @ngInject */
+    function interceptorConfig($httpProvider){
+        $httpProvider.interceptors.push('authInterceptorService');
+    }
+
 })();
