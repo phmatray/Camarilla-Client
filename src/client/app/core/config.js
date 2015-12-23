@@ -1,42 +1,41 @@
-(function () {
-    'use strict';
+;(function () {
+  'use strict'
 
-    var core = angular.module('app.core');
+  var core = angular.module('app.core')
 
-    core.config(toastrConfig);
+  core.config(toastrConfig)
 
-    toastrConfig.$inject = ['toastr'];
-    /* @ngInject */
-    function toastrConfig(toastr) {
-        toastr.options.timeOut = 4000;
-        toastr.options.positionClass = 'toast-bottom-right';
+  toastrConfig.$inject = ['toastr']
+  /* @ngInject */
+  function toastrConfig (toastr) {
+    toastr.options.timeOut = 4000
+    toastr.options.positionClass = 'toast-bottom-right'
+  }
+
+  var config = {
+    appErrorPrefix: '[camarilla Error] ',
+    appTitle: 'La Camarilla Ardente'
+  }
+
+  core.value('config', config)
+
+  core.config(configure)
+
+  configure.$inject = ['$logProvider', 'routerHelperProvider', 'exceptionHandlerProvider']
+  /* @ngInject */
+  function configure ($logProvider, routerHelperProvider, exceptionHandlerProvider) {
+    if ($logProvider.debugEnabled) {
+      $logProvider.debugEnabled(true)
     }
+    exceptionHandlerProvider.configure(config.appErrorPrefix)
+    routerHelperProvider.configure({docTitle: config.appTitle + ': '})
+  }
 
-    var config = {
-        appErrorPrefix: '[camarilla Error] ',
-        appTitle: 'La Camarilla Ardente'
-    };
+  core.config(interceptorConfig)
 
-    core.value('config', config);
-
-    core.config(configure);
-
-    configure.$inject = ['$logProvider', 'routerHelperProvider', 'exceptionHandlerProvider'];
-    /* @ngInject */
-    function configure($logProvider, routerHelperProvider, exceptionHandlerProvider) {
-        if ($logProvider.debugEnabled) {
-            $logProvider.debugEnabled(true);
-        }
-        exceptionHandlerProvider.configure(config.appErrorPrefix);
-        routerHelperProvider.configure({docTitle: config.appTitle + ': '});
-    }
-
-    core.config(interceptorConfig);
-    
-    interceptorConfig.$inject = ['$httpProvider'];
-    /* @ngInject */
-    function interceptorConfig($httpProvider){
-        $httpProvider.interceptors.push('authInterceptorService');
-    }
-
-})();
+  interceptorConfig.$inject = ['$httpProvider']
+  /* @ngInject */
+  function interceptorConfig ($httpProvider) {
+    $httpProvider.interceptors.push('authInterceptorService')
+  }
+})()

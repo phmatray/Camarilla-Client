@@ -15,10 +15,10 @@
 <div class="header high">
     <h1>Code coverage report for <span class="entity">./src/client/app/core/config.js</span></h1>
     <h2>
-        Statements: <span class="metric">100% <small>(16 / 16)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Statements: <span class="metric">100% <small>(20 / 20)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         Branches: <span class="metric">50% <small>(1 / 2)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
-        Functions: <span class="metric">100% <small>(3 / 3)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
-        Lines: <span class="metric">100% <small>(16 / 16)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">100% <small>(4 / 4)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">100% <small>(20 / 20)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
     </h2>
     <div class="path"><a href="../../../../index.html">All files</a> &#187; <a href="index.html">./src/client/app/core/</a> &#187; config.js</div>
@@ -59,7 +59,14 @@
 32
 33
 34
-35</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+35
+36
+37
+38
+39
+40
+41
+42</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
@@ -69,8 +76,8 @@
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">31</span>
-<span class="cline-any cline-yes">31</span>
+<span class="cline-any cline-yes">26</span>
+<span class="cline-any cline-yes">26</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
@@ -85,54 +92,68 @@
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">31</span>
-<span class="cline-any cline-yes">31</span>
+<span class="cline-any cline-yes">26</span>
+<span class="cline-any cline-yes">26</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">31</span>
-<span class="cline-any cline-yes">31</span>
+<span class="cline-any cline-yes">26</span>
+<span class="cline-any cline-yes">26</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">(function () {
-    'use strict';
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">26</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">;(function () {
+  'use strict'
 &nbsp;
-    var core = angular.module('app.core');
+  var core = angular.module('app.core')
 &nbsp;
-    core.config(toastrConfig);
+  core.config(toastrConfig)
 &nbsp;
-    toastrConfig.$inject = ['toastr'];
-    /* @ngInject */
-    function toastrConfig(toastr) {
-        toastr.options.timeOut = 4000;
-        toastr.options.positionClass = 'toast-bottom-right';
+  toastrConfig.$inject = ['toastr']
+  /* @ngInject */
+  function toastrConfig (toastr) {
+    toastr.options.timeOut = 4000
+    toastr.options.positionClass = 'toast-bottom-right'
+  }
+&nbsp;
+  var config = {
+    appErrorPrefix: '[camarilla Error] ',
+    appTitle: 'La Camarilla Ardente'
+  }
+&nbsp;
+  core.value('config', config)
+&nbsp;
+  core.config(configure)
+&nbsp;
+  configure.$inject = ['$logProvider', 'routerHelperProvider', 'exceptionHandlerProvider']
+  /* @ngInject */
+  function configure ($logProvider, routerHelperProvider, exceptionHandlerProvider) {
+    <span class="missing-if-branch" title="else path not taken" >E</span>if ($logProvider.debugEnabled) {
+      $logProvider.debugEnabled(true)
     }
+    exceptionHandlerProvider.configure(config.appErrorPrefix)
+    routerHelperProvider.configure({docTitle: config.appTitle + ': '})
+  }
 &nbsp;
-    var config = {
-        appErrorPrefix: '[camarilla Error] ',
-        appTitle: 'La Camarilla Ardente'
-    };
+  core.config(interceptorConfig)
 &nbsp;
-    core.value('config', config);
-&nbsp;
-    core.config(configure);
-&nbsp;
-    configure.$inject = ['$logProvider', 'routerHelperProvider', 'exceptionHandlerProvider'];
-    /* @ngInject */
-    function configure($logProvider, routerHelperProvider, exceptionHandlerProvider) {
-        <span class="missing-if-branch" title="else path not taken" >E</span>if ($logProvider.debugEnabled) {
-            $logProvider.debugEnabled(true);
-        }
-        exceptionHandlerProvider.configure(config.appErrorPrefix);
-        routerHelperProvider.configure({docTitle: config.appTitle + ': '});
-    }
-&nbsp;
-})();
+  interceptorConfig.$inject = ['$httpProvider']
+  /* @ngInject */
+  function interceptorConfig ($httpProvider) {
+    $httpProvider.interceptors.push('authInterceptorService')
+  }
+})()
 &nbsp;</pre></td></tr>
 </table></pre>
 
 </div>
 <div class="footer">
-    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Dec 08 2015 20:37:38 GMT+0100 (Paris, Madrid)</div>
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Dec 23 2015 22:45:30 GMT+0100 (Paris, Madrid)</div>
 </div>
 <script src="../../../../prettify.js"></script>
 <script>

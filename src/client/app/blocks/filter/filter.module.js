@@ -1,5 +1,5 @@
-(function() {
-    'use strict';
+;(function () {
+  'use strict'
 
-    angular.module('blocks.filter', []);
-})();
+  angular.module('blocks.filter', [])
+})()

@@ -1,9 +1,8 @@
-(function () {
-    'use strict';
+;(function () {
+  'use strict'
 
-    angular.module('app.about', [
-        'app.core',
-        'app.widgets'
-      ]);
-
-})();
+  angular.module('app.about', [
+    'app.core',
+    'app.widgets'
+  ])
+})()

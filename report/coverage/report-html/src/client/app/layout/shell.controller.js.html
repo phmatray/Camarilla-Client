@@ -15,10 +15,10 @@
 <div class="header high">
     <h1>Code coverage report for <span class="entity">./src/client/app/layout/shell.controller.js</span></h1>
     <h2>
-        Statements: <span class="metric">100% <small>(23 / 23)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Statements: <span class="metric">80.95% <small>(17 / 21)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         Branches: <span class="metric">100% <small>(0 / 0)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
-        Functions: <span class="metric">100% <small>(8 / 8)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
-        Lines: <span class="metric">100% <small>(23 / 23)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">71.43% <small>(5 / 7)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">80.95% <small>(17 / 21)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
     </h2>
     <div class="path"><a href="../../../../index.html">All files</a> &#187; <a href="index.html">./src/client/app/layout/</a> &#187; shell.controller.js</div>
@@ -90,16 +90,15 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-yes">3</span>
 <span class="cline-any cline-yes">3</span>
-<span class="cline-any cline-yes">3</span>
-<span class="cline-any cline-yes">3</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
@@ -110,65 +109,66 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">3</span>
-<span class="cline-any cline-yes">3</span>
-<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">(function() {
-    'use strict';
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">;(function () {
+  'use strict'
 &nbsp;
-    angular
-        .module('app.layout')
-        .controller('ShellController', ShellController);
+  angular
+    .module('app.layout')
+    .controller('ShellController', ShellController)
 &nbsp;
-    ShellController.$inject = ['$rootScope', '$timeout', '$q', 'dataservice', 'config', 'logger'];
-    /* @ngInject */
-    function ShellController($rootScope, $timeout, $q, dataservice, config, logger) {
-        var vm = this;
-        vm.busyMessage = 'Patientez SVP ...';
-        vm.isBusy = true;
-        $rootScope.showSplash = true;
-        vm.navline = {
-            title: config.appTitle,
-            text: 'Créé par Philippe Matray',
-            link: 'http://phmatray.net'
-        };
-        vm.users = 'Hello';
-&nbsp;
-        activate();
-&nbsp;
-        function activate() {
-            var promises = [getUsers()];
-            return $q.all(promises).then(function() {
-                logger.success(config.appTitle + ' chargé !', null);
-                hideSplash();
-            });
-        }
-&nbsp;
-        function hideSplash() {
-            //Force a 1 second delay so we can see the splash.
-            $timeout(function() {
-                $rootScope.showSplash = false;
-            }, 1000);
-        }
-&nbsp;
-        function getUsers() {
-            return dataservice.getUsers().then(function (data) {
-                vm.users = data;
-                return vm.users;
-            });
-        }
+  ShellController.$inject = ['$rootScope', '$timeout', 'authservice', 'dataservice', 'config', 'logger']
+  /* @ngInject */
+  function ShellController ($rootScope, $timeout, authservice, dataservice, config, logger) {
+    var vm = this
+    vm.busyMessage = 'Patientez SVP ...'
+    vm.isBusy = true
+    $rootScope.showSplash = true
+    vm.navline = {
+      title: config.appTitle,
+      text: 'Créé par Philippe Matray',
+      link: 'http://phmatray.net',
+      login: login,
+      username: '',
+      password: ''
     }
-})();
+&nbsp;
+    activate()
+&nbsp;
+    function activate () {
+      logger.success(config.appTitle + ' chargé !', null)
+      hideSplash()
+    }
+&nbsp;
+    function hideSplash () {
+      // Force a 1 second delay so we can see the splash.
+      $timeout(function () {
+        $rootScope.showSplash = false
+      }, 1000)
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function login () {</span>
+<span class="cstat-no" title="statement not covered" >      var loginData = {username: vm.navline.username, password: vm.navline.password}</span>
+<span class="cstat-no" title="statement not covered" >      return authservice.login(loginData).then(<span class="fstat-no" title="function not covered" >function (data) {</span></span>
+<span class="cstat-no" title="statement not covered" >        logger.success(data.access_token)</span>
+<span class="cstat-no" title="statement not covered" >        return data</span>
+      })
+    }
+  }
+})()
 &nbsp;</pre></td></tr>
 </table></pre>
 
 </div>
 <div class="footer">
-    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Dec 08 2015 20:37:38 GMT+0100 (Paris, Madrid)</div>
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Dec 23 2015 22:45:30 GMT+0100 (Paris, Madrid)</div>
 </div>
 <script src="../../../../prettify.js"></script>
 <script>

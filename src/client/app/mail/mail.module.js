@@ -1,9 +1,8 @@
-(function () {
-    'use strict';
+;(function () {
+  'use strict'
 
-    angular.module('app.mail', [
-        'app.core',
-        'app.widgets'
-      ]);
-
-})();
+  angular.module('app.mail', [
+    'app.core',
+    'app.widgets'
+  ])
+})()

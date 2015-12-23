@@ -1,20 +1,20 @@
-(function () {
-    'use strict';
+;(function () {
+  'use strict'
 
-    angular
-        .module('app.mail')
-        .controller('MailController', MailController);
+  angular
+    .module('app.mail')
+    .controller('MailController', MailController)
 
-    MailController.$inject = ['logger'];
-    /* @ngInject */
-    function MailController(logger) {
-        var vm = this;
-        vm.title = 'Mail';
+  MailController.$inject = ['logger']
+  /* @ngInject */
+  function MailController (logger) {
+    var vm = this
+    vm.title = 'Mail'
 
-        activate();
+    activate()
 
-        function activate() {
-            logger.info('Activated Mail View');
-        }
+    function activate () {
+      logger.info('Activated Mail View')
     }
-})();
+  }
+})()
