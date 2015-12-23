@@ -19,7 +19,7 @@
     vm.users = ''
     vm.confirmedUserCount = 0
     vm.userCount = 0
-    vm.username = 'ma biiite'
+    vm.username = ''
 
     activate()
 
