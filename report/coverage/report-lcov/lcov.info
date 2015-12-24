@@ -217,7 +217,7 @@ TN:
 SF:./src/client/app/account/account.controller.js
 FN:1,(anonymous_1)
 FN:10,AccountController
-FN:16,activate
+FN:20,activate
 FNF:3
 FNH:1
 FNDA:1,(anonymous_1)
@@ -229,10 +229,11 @@ DA:8,1
 DA:10,1
 DA:11,0
 DA:12,0
-DA:14,0
-DA:16,1
-DA:17,0
-LF:9
+DA:13,0
+DA:18,0
+DA:20,1
+DA:21,0
+LF:10
 LH:5
 BRF:0
 BRH:0
