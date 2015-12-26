@@ -17,8 +17,10 @@
       text: 'Créé par Philippe Matray',
       link: 'http://phmatray.net',
       login: login,
+      logout: logout,
       username: '',
-      password: ''
+      password: '',
+      isLogged: false
     }
 
     activate()
@@ -46,13 +48,23 @@
         .catch(fail)
 
       function success (response) {
-        var username = localStorageService.get('authorizationData').username
-        logger.success('Connexion réussie<br/>Bienvenue ' + username)
+        vm.navline.isLogged = true
+        vm.navline.username = localStorageService.get('authorizationData').username
+        logger.success('Connexion réussie<br/>Bienvenue ' + vm.navline.username)
       }
 
       function fail (e) {
+        vm.navline.isLogged = false
         logger.error('Impossible de vous connecter<br/>Peut-être êtes-vous déjà connecté.')
       }
+    }
+
+    function logout () {
+      authservice.logout()
+      vm.navline.isLogged = false
+      vm.navline.username = ''
+      vm.navline.password = ''
+      logger.success('Déconnexion réussie<br/>Merci de votre visite.')
     }
   }
 })()
