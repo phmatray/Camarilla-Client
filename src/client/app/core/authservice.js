@@ -17,7 +17,8 @@
       getUsername: getUsername
     }
 
-    var serviceBase = 'http://camarilla-api.azurewebsites.net/'
+    // var serviceBase = 'http://camarilla-api.azurewebsites.net/'
+    var serviceBase = 'http://localhost:20890/'
     var authentication = {
       isAuth: false,
       username: ''
@@ -40,19 +41,12 @@
     //             }
     //         }
 
-    function saveRegistration (registration) {
-      logout()
-
-      return $http.post(serviceBase + 'api/account/register', registration).then(function (response) {
-        return response
-      })
-    }
-
     function login (loginData) {
       var data = 'grant_type=password&username=' + loginData.username + '&password=' + loginData.password
       var deferred = $q.defer()
 
-      $http.post(serviceBase + 'oauth/token', data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }).success(function (response) {
+      $http.post(serviceBase + 'oauth/token', data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
+      .success(function (response) {
         localStorageService.set('authorizationData', { token: response.access_token, username: loginData.username })
         authentication.isAuth = true
         authentication.username = loginData.username
@@ -77,7 +71,7 @@
     //                 localStorageService.set('authorizationData', { token: response.access_token, username: loginData.username })
     //                 authentication.isAuth = true
     //                 authentication.username = loginData.username
-    //                 return response.data;
+    //                 return response.data
     //             }
     //
     //             function fail(e) {

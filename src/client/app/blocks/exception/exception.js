@@ -19,6 +19,8 @@
         if (e.data && e.data.description) {
           thrownDescription = '\n' + e.data.description
           newMessage = message + thrownDescription
+        } else {
+          newMessage = message
         }
         e.data.description = newMessage
         logger.error(newMessage)

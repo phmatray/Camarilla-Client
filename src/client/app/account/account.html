@@ -1,24 +1,38 @@
 <section id="about-view" class="mainbar">
-    <section class="matter">
-        <div class="container">
-            <div class="row">
+  <section class="matter">
+    <div class="container">
+      <div class="row">
 
-                <form class="form-login" role="form">
-                    <h2 class="form-login-heading">Sign up</h2>
-                    <input type="text" class="form-control" placeholder="Username" data-ng-model="registration.userName" required autofocus>
-                    <br/>
-                    <input type="password" class="form-control" placeholder="Password" data-ng-model="registration.password" required>
-                    <br/>
-                    <input type="password" class="form-control" placeholder="Confirm Password" data-ng-model="registration.confirmPassword" required>
-                    <br/>
-                    <button class="btn btn-lg btn-info btn-block" type="submit" data-ng-click="signUp()">Submit</button>
-                    <div data-ng-hide="message == ''" data-ng-class="(savedSuccessfully) ? 'alert alert-success' : 'alert alert-danger'">
-                        {{message}}
-                    </div>
-                </form>
+        <div class="col-md-6">
+          <div class="widget wred">
+            <div ht-widget-header title="{{vm.register.title}}" allow-collapse="true"></div>
+            <div class="widget-content text-center text-info">
 
-
+              <small>{{vm.register.description}}</small>
+              <form class="form-login" role="form">
+                <input type="text" class="form-control" placeholder="Prénom" data-ng-model="vm.registration.firstName" autofocus>
+                <br/>
+                <input type="text" class="form-control" placeholder="Nom" data-ng-model="vm.registration.lastName">
+                <br/>
+                <input type="text" class="form-control" placeholder="Nom d'utilisateur" data-ng-model="vm.registration.username">
+                <br/>
+                <input type="email" class="form-control" placeholder="Email" data-ng-model="vm.registration.email">
+                <br/>
+                <input type="password" class="form-control" placeholder="Mot de passe" data-ng-model="vm.registration.password">
+                <br/>
+                <input type="password" class="form-control" placeholder="Répéter mot de passe" data-ng-model="vm.registration.confirmPassword">
+                <br/>
+                <button class="btn btn-lg btn-info btn-block" type="submit" data-ng-click="vm.register.signUp()">Inscription</button>
+                <div data-ng-hide="vm.register.messages.length == 0" data-ng-class="(vm.register.savedSuccessfully) ? 'alert alert-success' : 'alert alert-danger'">
+                  <div ng-repeat="message in vm.register.messages">
+                    <span>{{message}}</span>
+                  </div>
+                </div>
+              </form>
             </div>
         </div>
-    </section>
+
+      </div>
+    </div>
+  </section>
 </section>

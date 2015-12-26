@@ -34,7 +34,8 @@
 
   "globals": {
     // e.g. "angular": true
-    "angular": true
+    "angular": true,
+    "$": true
   },
 
   "plugins": [

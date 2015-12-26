@@ -11,7 +11,8 @@
     var service = {
       getPeople: getPeople,
       getMessageCount: getMessageCount,
-      getUsers: getUsers
+      getUsers: getUsers,
+      addUser: addUser
     // getToken: getToken
     }
 
@@ -36,7 +37,8 @@
     }
 
     function getUsers () {
-      return $http.get('http://camarilla-api.azurewebsites.net/api/accounts/users')
+      return $http.get('http://localhost:20890/api/accounts/users')
+        // return $http.get('http://camarilla-api.azurewebsites.net/api/accounts/users')
         .then(success)
         .catch(fail)
 
@@ -46,6 +48,20 @@
 
       function fail (e) {
         return exception.catcher('XHR Failed for getUsers')(e)
+      }
+    }
+
+    function addUser (data) {
+      return $http.post('http://localhost:20890/api/accounts/users', data)
+        .then(success)
+        .catch(fail)
+
+      function success (response) {
+        return response.data
+      }
+
+      function fail (e) {
+        return exception.catcher(e.data.message)(e)
       }
     }
 
