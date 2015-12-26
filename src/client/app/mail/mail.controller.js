@@ -14,7 +14,7 @@
     activate()
 
     function activate () {
-      logger.info('Activated Mail View')
+      // logger.info('Activated Mail View')
     }
   }
 })()

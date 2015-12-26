@@ -14,7 +14,7 @@
     activate()
 
     function activate () {
-      logger.info('Activated About View')
+      // logger.info('Activated About View')
     }
   }
 })()

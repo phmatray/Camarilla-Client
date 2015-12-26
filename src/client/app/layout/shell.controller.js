@@ -5,9 +5,9 @@
     .module('app.layout')
     .controller('ShellController', ShellController)
 
-  ShellController.$inject = ['$rootScope', '$timeout', 'authservice', 'dataservice', 'config', 'logger']
+  ShellController.$inject = ['$rootScope', '$timeout', 'authservice', 'dataservice', 'localStorageService', 'config', 'logger']
   /* @ngInject */
-  function ShellController ($rootScope, $timeout, authservice, dataservice, config, logger) {
+  function ShellController ($rootScope, $timeout, authservice, dataservice, localStorageService, config, logger) {
     var vm = this
     vm.busyMessage = 'Patientez SVP ...'
     vm.isBusy = true
@@ -36,11 +36,23 @@
     }
 
     function login () {
-      var loginData = {username: vm.navline.username, password: vm.navline.password}
-      return authservice.login(loginData).then(function (data) {
-        logger.success(data.access_token)
-        return data
-      })
+      var loginData = {
+        username: vm.navline.username,
+        password: vm.navline.password
+      }
+
+      authservice.login(loginData)
+        .then(success)
+        .catch(fail)
+
+      function success (response) {
+        var username = localStorageService.get('authorizationData').username
+        logger.success('Connexion réussie<br/>Bienvenue ' + username)
+      }
+
+      function fail (e) {
+        logger.error('Impossible de vous connecter<br/>Peut-être êtes-vous déjà connecté.')
+      }
     }
   }
 })()

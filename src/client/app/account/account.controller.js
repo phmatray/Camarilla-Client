@@ -29,7 +29,7 @@
     activate()
 
     function activate () {
-      logger.info('Activated Account View')
+      // logger.info('Activated Account View')
     }
 
     function signUp () {
@@ -40,8 +40,8 @@
         .catch(fail)
 
       function success (response) {
-        vm.register.message = response
         vm.register.savedSuccessfully = true
+        vm.register.message.push(response)
         logger.success('Merci de votre inscription, vous allez recevoir un mail dans quelques minutes.')
       }
 

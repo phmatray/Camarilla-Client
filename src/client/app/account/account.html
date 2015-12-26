@@ -22,6 +22,7 @@
                 <br/>
                 <input type="password" class="form-control" placeholder="Répéter mot de passe" data-ng-model="vm.registration.confirmPassword">
                 <br/>
+                <br/>
                 <button class="btn btn-lg btn-info btn-block" type="submit" data-ng-click="vm.register.signUp()">Inscription</button>
                 <div data-ng-hide="vm.register.messages.length == 0" data-ng-class="(vm.register.savedSuccessfully) ? 'alert alert-success' : 'alert alert-danger'">
                   <div ng-repeat="message in vm.register.messages">

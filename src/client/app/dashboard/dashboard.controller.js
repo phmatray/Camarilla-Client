@@ -28,7 +28,7 @@
     function activate () {
       var promises = [getMessageCount(), getPeople(), getUsers(), getUsername()]
       return $q.all(promises).then(function () {
-        logger.info('Activated Dashboard View')
+        // logger.info('Activated Dashboard View')
       })
     }
 
