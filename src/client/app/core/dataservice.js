@@ -13,7 +13,8 @@
       getMessageCount: getMessageCount,
       getUsers: getUsers,
       addUser: addUser,
-      addPersona: addPersona
+      addPersona: addPersona,
+      getPersonae: getPersonae
     // getToken: getToken
     }
 
@@ -68,6 +69,20 @@
 
     function addPersona (data) {
       return $http.post('http://localhost:20890/api/personae', data)
+        .then(success)
+        .catch(fail)
+
+      function success (response) {
+        return response.data
+      }
+
+      function fail (e) {
+        return exception.catcher(e.data.message)(e)
+      }
+    }
+
+    function getPersonae (username) {
+      return $http.get('http://localhost:20890/api/accounts/users/' + username + '/personae ')
         .then(success)
         .catch(fail)
 

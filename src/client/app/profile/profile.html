@@ -17,8 +17,8 @@
 
             <table class="table">
               <tr>
-                <td rowspan="4">
-                  <img width="120px" src="{{persona.picture}}">
+                <td rowspan="5">
+                  <img width="120px" src="{{persona.pictureUrl}}">
                 </td>
                 <td>Nom</td>
                 <td><strong>{{persona.name}}</strong></td>
@@ -26,7 +26,7 @@
               <tr>
                 <td>Lieu et
                   <br/>date de naissance</td>
-                <td><strong>{{persona.birthplace}}<br/>{{persona.birthdate}}</strong></td>
+                <td><strong>{{persona.birthPlace}}<br/>{{persona.birthDate|date}}</strong></td>
               </tr>
               <tr>
                 <td>Sexe</td>
@@ -34,11 +34,15 @@
               </tr>
               <tr>
                 <td>Race</td>
-                <td><strong>{{persona.race}}</strong></td>
+                <td><strong>{{persona.race.name}}</strong></td>
+              </tr>
+              <tr>
+                <td>Clan</td>
+                <td><strong>{{persona.clan.name}}</strong></td>
               </tr>
               <tr>
                 <td colspan="3">
-                  <p>{{persona.description}}</p>
+                  <p>{{persona.background}}</p>
                 </td>
               </tr>
             </table>
