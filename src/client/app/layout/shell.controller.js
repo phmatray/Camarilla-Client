@@ -19,6 +19,7 @@
       login: login,
       logout: logout,
       username: '',
+      persona: null,
       password: '',
       isLogged: false
     }
@@ -26,8 +27,13 @@
     activate()
 
     function activate () {
+      $rootScope.$on('personaUpdated', personaUpdated)
       logger.success(config.appTitle + ' chargé !', null)
       hideSplash()
+
+      function personaUpdated (event, persona) {
+        vm.navline.persona = persona
+      }
     }
 
     function hideSplash () {

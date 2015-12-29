@@ -46,39 +46,23 @@
       var deferred = $q.defer()
 
       $http.post(serviceBase + 'oauth/token', data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
-      .success(function (response) {
+        .success(success)
+        .error(error)
+
+      return deferred.promise
+
+      function success (response) {
         localStorageService.set('authorizationData', { token: response.access_token, username: loginData.username })
         authentication.isAuth = true
         authentication.username = loginData.username
-
         deferred.resolve(response)
-      }).error(function (err, status) {
+      }
+
+      function error (err, status) {
         logout()
         deferred.reject(err)
-      })
-
-      return deferred.promise
+      }
     }
-
-    //         function login(loginData) {
-    //             var data = "grant_type=password&username=" + loginData.username + "&password=" + loginData.password
-    //
-    //             return $http.post(serviceBase + 'oauth/token', data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
-    //                 .then(success)
-    //                 .catch(fail)
-    //
-    //             function success(response) {
-    //                 localStorageService.set('authorizationData', { token: response.access_token, username: loginData.username })
-    //                 authentication.isAuth = true
-    //                 authentication.username = loginData.username
-    //                 return response.data
-    //             }
-    //
-    //             function fail(e) {
-    //                 logout()
-    //                 return exception.catcher('XHR Failed for login')(e)
-    //             }
-    //         }
 
     function logout () {
       localStorageService.remove('authorizationData')

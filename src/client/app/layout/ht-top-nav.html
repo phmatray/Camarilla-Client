@@ -36,7 +36,16 @@
 
     <div class="pull-right navbar-logo" ng-show="vm.navline.isLogged">
       <ul class="nav navbar-nav pull-right">
-        <li><a href="#"><strong>{{vm.navline.username}}</strong></a></li>
+        <li>
+          <a href="#">
+            <strong>
+              {{vm.navline.username}}
+              <span ng-show="vm.navline.persona !== null">
+                &nbsp;/&nbsp;{{vm.navline.persona.pseudo}}
+              </span>
+            </strong>
+          </a>
+        </li>
         <li><a ng-click="vm.navline.logout()">Me déconnecter</a></li>
         <!--<li>
           <a ng-href="{{vm.navline.link}}" target="_blank">

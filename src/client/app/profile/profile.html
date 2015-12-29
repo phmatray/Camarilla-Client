@@ -1,0 +1,52 @@
+<section id="profile-view" class="mainbar">
+  <section class="matter">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <a ui-sref="create-profile" class="btn btn-lg btn-primary pull-right" style="margin-top: 5px;">Créer</a>
+          <h1>{{vm.title}}</h1>
+          <br/>
+        </div>
+      </div>
+      <div class="row">
+        <div ng-repeat="persona in vm.personae" class="col-sm-12 col-lg-6">
+          <div style="border: 1px solid lightgrey; padding: 15px; margin-bottom: 10px">
+
+            <a ng-click="vm.select(persona)" class="btn btn-default pull-right" style="margin: 10px 0px 5px 10px">Choisir</a>
+            <h3 style="margin: 5px 0 5px 0px">{{persona.pseudo}}</h3>
+
+            <table class="table">
+              <tr>
+                <td rowspan="4">
+                  <img width="120px" src="{{persona.picture}}">
+                </td>
+                <td>Nom</td>
+                <td><strong>{{persona.name}}</strong></td>
+              </tr>
+              <tr>
+                <td>Lieu et
+                  <br/>date de naissance</td>
+                <td><strong>{{persona.birthplace}}<br/>{{persona.birthdate}}</strong></td>
+              </tr>
+              <tr>
+                <td>Sexe</td>
+                <td><strong>{{persona.gender}}</strong></td>
+              </tr>
+              <tr>
+                <td>Race</td>
+                <td><strong>{{persona.race}}</strong></td>
+              </tr>
+              <tr>
+                <td colspan="3">
+                  <p>{{persona.description}}</p>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</section>

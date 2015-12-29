@@ -8,6 +8,7 @@
     'app.dashboard',
     'app.about',
     'app.mail',
+    'app.profile',
     'app.account',
     'app.layout'
   ])

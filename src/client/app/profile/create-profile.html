@@ -1,0 +1,78 @@
+<section id="profile-view" class="mainbar">
+  <section class="matter">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1>{{vm.title}}</h1>
+          <br/>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+
+          <form class="form-horizontal" ng-submit="vm.submit()">
+            <fieldset>
+              <!--<div class="form-group">
+                <label for="inputPseudo" class="col-lg-3 control-label">Pseudo</label>
+                <div class="col-lg-9">
+                  <input type="text" ng-model="vm.newPersona.pseudo" class="form-control" id="inputPseudo" placeholder="Pseudo">
+                </div>
+              </div>-->
+              <div class="form-group">
+                <label for="inputNom" class="col-lg-3 control-label">Nom</label>
+                <div class="col-lg-9">
+                  <input ng-model="vm.newPersona.name" type="text" class="form-control" id="inputNom" placeholder="Nom">
+                </div>
+              </div>
+              <!--<div class="form-group">
+                <label for="inputBirthPlace" class="col-lg-3 control-label">Lieu de naissance</label>
+                <div class="col-lg-9">
+                  <input type="text" class="form-control" id="inputBirthPlace" placeholder="Lieu de naissance">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputBirthDate" class="col-lg-3 control-label">Date de naissance</label>
+                <div class="col-lg-9">
+                  <input type="date" class="form-control" id="inputBirthDate" placeholder="Date de naissance">
+                </div>
+              </div>-->
+              <div class="form-group">
+                <label for="textAreaBackground" class="col-lg-3 control-label">Description</label>
+                <div class="col-lg-9">
+                  <textarea ng-model="vm.newPersona.background" class="form-control" rows="3" id="textAreaBackground"></textarea>
+                </div>
+              </div>
+              <!--<div class="form-group">
+                <label for="selectGender" class="col-lg-3 control-label">Sexe</label>
+                <div class="col-lg-9">
+                  <select class="form-control" id="selectGender">
+                    <option>Homme</option>
+                    <option>Femme</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="selectRace" class="col-lg-3 control-label">Race</label>
+                <div class="col-lg-9">
+                  <select class="form-control" id="selectRace">
+                    <option>Humain</option>
+                    <option>Goule</option>
+                    <option>Vampire</option>
+                  </select>
+                </div>
+              </div>-->
+              <div class="form-group">
+                <div class="col-lg-9 col-lg-offset-3">
+                  <button type="reset" class="btn btn-default">Annuler</button>
+                  <button type="submit" class="btn btn-primary">Valider</button>
+                </div>
+              </div>
+            </fieldset>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+</section>
