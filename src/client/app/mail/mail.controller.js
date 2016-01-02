@@ -5,11 +5,11 @@
     .module('app.mail')
     .controller('MailController', MailController)
 
-  MailController.$inject = ['logger']
+  MailController.$inject = ['sessionservice', 'logger']
   /* @ngInject */
-  function MailController (logger) {
+  function MailController (sessionservice, logger) {
     var vm = this
-    vm.title = 'Mail'
+    vm.title = 'Messagerie de ' + sessionservice.getPersona().pseudo
 
     activate()
 
