@@ -23,11 +23,18 @@
     }
 
     function getPersonae () {
-      var username = localStorageService.get('authorizationData').username
-      return dataservice.getPersonae(username).then(function (data) {
-        vm.personae = data
-        return vm.personae
-      })
+      var authorizationData = localStorageService.get('authorizationData')
+      if (authorizationData) {
+        var username = authorizationData.username
+        if (username) {
+          return dataservice.getPersonae(username).then(function (data) {
+            vm.personae = data
+            return vm.personae
+          })
+        }
+      } else {
+        logger.info('Vous n\'avez pas encore de personnage.')
+      }
     }
 
     function select (persona) {
