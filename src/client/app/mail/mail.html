@@ -1,13 +1,136 @@
+<!-- Modals -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <form class="modal-content form-horizontal" ng-submit="vm.sendMail()">
+      <fieldset>
+
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Envoyer un mail</h4>
+        </div>
+        <div class="modal-body" style="margin-left: 17px; margin-right: 17px;">
+          <div class="form-group">
+            <div class="row">
+              <div class="col-md-4" style="text-align: right;">
+                <label for="inputToPseudos" class="control-label">Envoyer à :</label>
+              </div>
+              <div class="col-md-8">
+                <input ng-model="vm.newMail.toPseudos" type="text" class="form-control" id="inputToPseudos" placeholder="Pseudos séparés par un ;" style="width: 100%;">
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="row">
+              <div class="col-md-4" style="text-align: right;">
+                <label for="inputSubject" class="control-label">Objet :</label>
+              </div>
+              <div class="col-md-8">
+                <input ng-model="vm.newMail.subject" type="text" class="form-control" id="inputSubject" placeholder="Objet" style="width: 100%;">
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="row">
+              <div class="col-md-4" style="text-align: right;">
+                <label for="inputMessage" class="control-label">Message :</label>
+              </div>
+              <div class="col-md-8">
+                <textarea ng-model="vm.newMail.message" class="form-control" rows="5" id="inputMessage" style="width: 100%; max-width: 100%"></textarea>
+                <!--<textarea class="form-control" id="inputMessage" placeholder="Votre message" style="width: 100%;">-->
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="reset" class="btn btn-default" data-dismiss="modal">Annuler</button>
+          <button type="submit" class="btn btn-primary">Envoyer</button>
+        </div>
+
+      </fieldset>
+    </form>
+  </div>
+
+</div>
+<!-- END of Modals -->
+
 <section id="about-view" class="mainbar">
   <section class="matter">
     <div class="container">
       <div class="row">
         <div class="col-md-12">
+          <a data-toggle="modal" data-target="#myModal" class="btn btn-lg btn-primary pull-right" style="margin-top: 5px;">Envoyer un mail</a>
           <h1>{{vm.title}}</h1>
           <br/>
         </div>
       </div>
       <div class="row">
+
+        <!-- Received Mails -->
+        <div class="col-md-12">
+          <div class="widget wred">
+            <div ht-widget-header title="{{vm.receivedMails.title}}" allow-collapse="true"></div>
+            <div class="widget-content text-center text-info">
+              <table class="table table-condensed table-striped">
+                <thead>
+                  <tr>
+                    <th style="width: 160px">Reçu le</th>
+                    <th style="width: 160px">De</th>
+                    <th style="width: 200px">À</th>
+                    <th style="width: 200px">Objet</th>
+                    <th>Message</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="m in vm.receivedMails.data | orderBy:'-mail.sent'">
+                    <td>{{m.mail.sent | date:'medium'}}</td>
+                    <td>{{m.mail.from}}</td>
+                    <td>{{m.mail.to}}</td>
+                    <td>{{m.mail.subject}}</td>
+                    <td>{{m.mail.message}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="widget-foot">
+              <div class="clearfix"></div>
+            </div>
+          </div>
+        </div>
+        <!-- END of Received Mails -->
+
+        <!-- Sent Mails -->
+        <div class="col-md-12">
+          <div class="widget wred">
+            <div ht-widget-header title="{{vm.sentMails.title}}" allow-collapse="true"></div>
+            <div class="widget-content text-center text-info">
+              <table class="table table-condensed table-striped">
+                <thead>
+                  <tr>
+                    <th style="width: 160px">Envoyé le</th>
+                    <th style="width: 160px">De</th>
+                    <th style="width: 200px">À</th>
+                    <th style="width: 200px">Objet</th>
+                    <th>Message</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="m in vm.sentMails.data | orderBy:'-mail.sent'">
+                    <td>{{m.mail.sent | date:'medium'}}</td>
+                    <td>{{m.mail.from}}</td>
+                    <td>{{m.mail.to}}</td>
+                    <td>{{m.mail.subject}}</td>
+                    <td>{{m.mail.message}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="widget-foot">
+              <div class="clearfix"></div>
+            </div>
+          </div>
+        </div>
+        <!-- END of Sent Mails -->
+
       </div>
     </div>
   </section>

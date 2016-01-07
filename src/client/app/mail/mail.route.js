@@ -23,7 +23,7 @@
           title: 'Mails',
           settings: {
             nav: 3,
-            content: '<i class="fa fa-fw fa-hashtag"></i> Mails'
+            content: '<i class="fa fa-fw fa-envelope"></i> Mails'
           }
         }
       }

@@ -14,7 +14,9 @@
       getUsers: getUsers,
       addUser: addUser,
       addPersona: addPersona,
-      getPersonae: getPersonae
+      getPersonae: getPersonae,
+      getMailsForPersona: getMailsForPersona,
+      sendMail: sendMail
     // getToken: getToken
     }
 
@@ -83,6 +85,34 @@
 
     function getPersonae (username) {
       return $http.get('http://localhost:20890/api/accounts/users/' + username + '/personae ')
+        .then(success)
+        .catch(fail)
+
+      function success (response) {
+        return response.data
+      }
+
+      function fail (e) {
+        return exception.catcher(e.data.message)(e)
+      }
+    }
+
+    function getMailsForPersona (pseudo) {
+      return $http.get('http://localhost:20890/api/mails/' + pseudo)
+        .then(success)
+        .catch(fail)
+
+      function success (response) {
+        return response.data
+      }
+
+      function fail (e) {
+        return exception.catcher(e.data.message)(e)
+      }
+    }
+
+    function sendMail (data) {
+      return $http.post('http://localhost:20890/api/mails', data)
         .then(success)
         .catch(fail)
 

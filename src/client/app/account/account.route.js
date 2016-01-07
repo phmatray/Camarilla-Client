@@ -20,10 +20,10 @@
           templateUrl: 'app/account/account.html',
           controller: 'AccountController',
           controllerAs: 'vm',
-          title: 'Accounts',
+          title: 'S\'enregistrer',
           settings: {
             nav: 4,
-            content: '<i class="fa fa-fw fa-sign-in"></i> Accounts'
+            content: '<i class="fa fa-fw fa-sign-in"></i> S\'enregistrer'
           }
         }
       }
